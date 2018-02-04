@@ -47,7 +47,7 @@ int findSpath(int src,int des)
     return dist[des];
 }
 int main()
-{   freopen("in.txt","r",stdin);
+{   //freopen("in.txt","r",stdin);
     int edge, u, v,re,s,d;
     cin>>edge;
     for(int i=0;i<edge;i++)
