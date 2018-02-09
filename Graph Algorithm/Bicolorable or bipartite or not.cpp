@@ -36,7 +36,7 @@ int Findcolor(int src)
     return 1;
  }
 int main()
-{   freopen("in.txt","r",stdin);
+{  // freopen("in.txt","r",stdin);
     int edge,u,v,res,src,d;
     cin>>edge;
 
