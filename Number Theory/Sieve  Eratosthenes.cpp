@@ -11,12 +11,9 @@ int main()
   int p=sqrt(n)+1;
   int prime[n+2];
 
-  for(int i=2;i<=n;i++)
-   {
-    prime[i]=i;///Initial generate upto 2-n
-   }
 
-    for(int i=2;i<=p;i++)
+
+    for(int i=2;i*i<=p;i++)//same sqrt(n)==i*i
     {
       if(prime[i])
       {
