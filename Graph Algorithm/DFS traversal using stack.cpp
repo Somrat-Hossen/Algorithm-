@@ -32,7 +32,7 @@ vector<int>vec[100];
 
 int main()
 {
-   freopen("in.txt","r",stdin);
+  /// freopen("in.txt","r",stdin);
    int u,v,edg,ver,src;
    cin>>edg;
   for(int i=0;i<edg;i++)
