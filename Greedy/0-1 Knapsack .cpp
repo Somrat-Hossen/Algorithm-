@@ -21,11 +21,13 @@ int main()
 
     sort(pi,pi+n); ///Ascending order.
 
-    for(i=n-1;i>=0&& w>0; i--) ///Read data in descending order while the weight is greater than 0
+    for(i=n-1;i>=0; i--) ///Read data in descending order while the weight is greater than 0
     {
-      int x=min(w,pi[i].second);///when weight is 0 then loop end.
-      w-=x;
-      res+=pi[i].first;
+       if((cur+pi[i].second)<=w)          ///when weight is 0 then loop end.
+      {
+        res+=pi[i].first;
+        cur+=pi[i].second;
+      }
     }
     cout<<"Max profit:"<<res<<endl;
 
