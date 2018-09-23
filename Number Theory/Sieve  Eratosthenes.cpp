@@ -8,28 +8,39 @@ int main()
   int n,m;
   printf("Enter the limit for check prime :\n");
   cin>>n;
+
   int p=sqrt(n)+1;
   int prime[n+2];
+  int check[n];
+  int cnt=1;
 
 
 
-    for(int i=2;i*i<=p;i++)//same sqrt(n)==i*i
+    for(int i=4;i<=n;i+=2)///All even except 3 are marked.
     {
-      if(prime[i])
+     prime[i]=0;
+    }
+    for(int i=3;i<=n;i+=2)///same sqrt(n)==i*i
+    {
+      if(prime[i]!=0)
       {
-          for(int j=i*2;j<=n;j+=i)
+          check[++cnt]=i; ///i means prime
+          if(i<=p)  ///there is no divisor after sqrt n
           {
-              prime[j]=0;
+           for(int j=i*2;j<=n;j+=i)
+           {
+              prime[j]=0; ///0 means not prime
+           }
           }
       }
     }
+    check[1]=2;
 
  cout<<"Prime series is :";
 
- for(int i=2;i<=n;i++)
+ for(int i=1;i<=cnt;i++)
    {
-      if(prime[i])
-         cout<<prime[i]<<" ";
+     cout<<check[i]<<" ";
    }
 
    cout<<endl<<"Enter any number to check whether it is prime or not:";
@@ -42,4 +53,5 @@ int main()
 
      return 0;
  }
+
 
