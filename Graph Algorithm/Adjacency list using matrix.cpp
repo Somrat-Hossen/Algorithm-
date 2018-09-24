@@ -9,7 +9,7 @@
 #define clr(ar)        memset(ar, 0, sizeof(ar))
 #define loop(i,n)      for(int i=0; i<n; i++)
 #define maxint(a,b,c) (a>b)?(a>c)?a:c :(b>c)?b:c
-#define READ          freopen("in.txt", "r", stdin);
+#define READ          freopen("int.txt", "r", stdin);
 #define WRITE          freopen("out.txt", "w", stdout);
 
 using namespace std;
@@ -35,17 +35,20 @@ int check(int n)
 
 int main()
 {
-    READ;
-    int e;cin>>e;
+    ///READ;
+    int e,node;
+    cin>>node>>e;
+    
     for(i=1;i<=e;i++)
      {
           cin>>a>>b;
           two[a][b]=1;
           two[b][a]=1;
      }
-     for(i=1;i<e;i++)
+     for(i=1;i<=node;i++)
     {
-       for(j=1;j<e;j++)
+        cout<<i<<":";
+       for(j=1;j<=node;j++)
        {
          cout<<two[i][j]<<" ";
        }
