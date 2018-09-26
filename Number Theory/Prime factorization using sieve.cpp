@@ -3,7 +3,7 @@
 typedef long long int ll;
 using namespace std;
 int p[10000000];
-int di[1000000];
+int divisor[1000000];
 bool a[100000000000];
 
 int main()
@@ -27,26 +27,27 @@ int main()
     {
         if(!a[i])
         {
-            p[++j]=i;
+            p[++j]=i; ////prime num store.
           //  cout<<i<<" ";
         }
     }
-    di[++c]=1;
+    divisor[++c]=1; /// first divisor is one
    for(i=1;i*i<=j;i++)
    {
     while(n%p[i]==0 && n)
     {
-     di[++c]=p[i];
+     divisor[++c]=p[i];
      n/=p[i];
     }
    }
+   if(n>2) divisor[++c]=n; 
+    
    cout<<"Divisor of "<<m<<" is: ";
 
-   if(n>2) di[++c]=n;
-
+   
    for(i=1;i<=c;i++)
     {
-     cout<<di[i]<<" ";
+     cout<<divisor[i]<<" ";
     }
 
     return 0;
