@@ -1,66 +1,79 @@
 #include<bits/stdc++.h>
-#define pb push_back
 using namespace std;
 
-bool vis[1000];
-vector<int>path;
-vector<int>Adj[1000];
-int pa[1000],dist[1000];
+int u,e,nd,i,j,f,s,src,x,y,des;
 
-int findSpath(int src,int des)
+vector<int>v[100],path;
+int vis[100],dis[100],pa[100];
+queue<int> q;
+
+void traversal(int src,int des)
 {
-    queue<int> q;
-    //For one source. If there are many source then push all of them.
-    q.push(src); vis[src]=1; dist[src]=0;
-    while(!q.empty())
-        {
-        int u = q.front();
-        q.pop();
-        for(int i=0,len = Adj[u].size();i<len;i++)
-        {
-            int f = Adj[u][i];
-            if(vis[f]==0)
-            {
+    q.push(src);
+    vis[src]=1;
+    dis[src]=0;
 
-                q.push(f);
-                vis[f]  = 1;
-                pa[f] = u; //we have store parrent by sequence
-                dist[f] = dist[u]+1;/*Distance of f from the starting node "src" is :
-                Distance of previous node of u + 1 */
+    while(!q.empty())
+    {
+        f=q.front();
+        q.pop();
+
+        for(i=0;i<v[f].size();i++)
+        {
+            s=v[f][i];
+            if(vis[s]==0)
+            {
+                q.push(s);
+                vis[s]=1;
+                dis[s]=dis[f]+1;  ///Each time we add 1 with it's parent node
+                pa[s]=f;      ///we stored parent in child .f parent ,s child.
             }
         }
     }
-    if(vis[des]==0)
-    return -1;
-    int nDes = des;
+
+  if(vis[des]==0)
+        {
+          cout<<"There is no path"<<endl;  return ;
+        }
+   else
+    cout<<"Total distance from source to destination: "<<dis[des]<<endl;
+
+   int ne=des;
     path.push_back(des);
-    while(nDes !=src)
+    while(ne!=src)
     {
-        nDes = pa[nDes];
-        path.push_back(nDes);
+        path.push_back(pa[ne]);
+        ne=pa[ne];    ///Each time value of ne changes.
     }
-    reverse(path.begin(),path.end());
-    for(int i=0,len = (int)path.size();i<len;i++)
-    cout<<path[i]<<" ";
-    cout<<endl;
-    path.clear();
-    return dist[des];
+    
+    reverse(path.begin(),path.end()); ///Reverse the path vector.
+
+    for(vector<int>::iterator it=path.begin();it!=path.end();it++)
+    {
+        cout<<*it<<" ";    ///print the path between source to destination
+    }
 }
+
+
+
+
 int main()
-{   //freopen("in.txt","r",stdin);
-    int edge, u, v,re,s,d;
-    cin>>edge;
-    for(int i=0;i<edge;i++)
-    {
-        cin>>u>>v;
-        Adj[u].pb(v);
-        Adj[v].pb(u);
-    }
-    cin>>s>>d;
-    re = findSpath(s,d);
-    if(re==-1)
-        cout<<"There are not any path"<<endl;
-    else
-        cout<<"The Minimum cost is : "<<re<<endl;
+{
+  ///freopen("in.txt","r",stdin);
+
+  cin>>e;
+
+  for(i=0;i<e;i++)
+  {
+      cin>>x>>y;
+    v[x].push_back(y);
+    v[y].push_back(x);
+  }
+
+   cin>>src>>des;
+    
+  traversal(src,des);
+
     return 0;
 }
+
