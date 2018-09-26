@@ -1,54 +1,67 @@
 #include<bits/stdc++.h>
 using namespace std;
-bool vis[1000];
-queue<int>que;
 
+int u,e,nd,i,j,f,s,src,x,y;
+vector<int>v[100];
+int vis[100],cost[100];
+queue<int> q;
+
+void traversal(int src)
+{
+    q.push(src);
+    vis[src]=1;
+
+    while(!q.empty())
+    {
+        f=q.front();
+        q.pop();
+        cout<<f<<" "; ///print node during traversal.
+
+        for(i=0;i<v[f].size();i++)
+        {
+            s=v[f][i];
+            if(vis[s]==0)
+            {
+                q.push(s);
+                vis[s]=1;
+            }
+         }
+     }
+}
 
 
 int main()
 {
-    freopen("in.txt","r",stdin);
-    int node,edge,u,v,s,f,i,j,src;
+  freopen("in.txt","r",stdin);
 
-    puts("Enter the number of vertex and edge:");
-    cin>>node>>edge;
-    vector<int>vec[node+5];
-    for(i=1;i<=edge;i++)
-    {
-      cin>>u>>v;
-      vec[u].push_back(v);//i does not matter whether start from 1 or 0
-      vec[v].push_back(u);
-    }
-    for(i=1;i<=node;i++)
-    {
-        cout<<i<<" : ";
-        for(j=0;j<(int)vec[i].size();j++)
-        {
-            cout<<vec[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-     puts("Give your desirous source:");
-    cin>>src;
-    que.push(src);
+ cout<<"Enter node and vertices "<<endl;
+  cin>>nd>>e;
 
-  cout<<endl<<"Graph Traversal are : ";
-    while(!que.empty())
+  for(i=0;i<e;i++)
+  {
+      cin>>x>>y;
+    v[x].push_back(y);
+    v[y].push_back(x);
+  }
+    
+  puts("Adjacency list:");
+  for(int i=1;i<=nd;i++)
+  {
+    cout<<i<<" : ";
+    for(int j=0;j<(int)v[i].size();j++)
     {
-        f=que.front(); que.pop();
-        if(vis[f]==0)
-        {
-            cout<<f<<" "; vis[f]=1;
-            for(j=0;j<(int)vec[f].size();j++)
-            {
-                s=vec[f][j];
-                if(vis[s]==0)
-                {
-                    que.push(s);
-                }
-            }
-        }
+    cout<<v[i][j]<<" "; ///Adjacency list of graph print
     }
+    cout<<endl;
+  }
+  cout<<endl;
+
+  cout<<"Enter  src vertix :"<<endl;
+   cin>>src;
+  cout<<"Traversal are: ";
+
+  traversal(src); ///Function call
+
     return 0;
-
 }
+
