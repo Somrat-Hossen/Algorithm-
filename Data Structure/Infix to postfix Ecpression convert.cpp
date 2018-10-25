@@ -42,7 +42,12 @@ void push(char item)
 
 int main()
 {
-    freopen("in.txt","r",stdin);
+   // freopen("in.txt","r",stdin);
+    int tc;
+    cin>>tc; getchar();
+    while(tc--)
+    {
+     top=-1;
     char infix[size],postfix[size],item,temp;
     int i=0,j=-1;
     cout<<"Enter an expression in infix notation:"<<endl;
@@ -50,7 +55,7 @@ int main()
     gets(infix);
     //cout<<infix<<endl;
 
-  while(infix[i]!='\0')
+   while(infix[i]!='\0')
     {
         item=infix[i];
         if(item=='(')
@@ -105,6 +110,7 @@ int main()
    postfix[++j]='\0';
 
   puts(postfix);
+}
 
 
     return 0;
