@@ -1,35 +1,35 @@
 #include<bits/stdc++.h>
-
 using namespace std;
-typedef long long int ll;
 
+// Returns nCr % p
+int nCrModp(int n, int r, int p)
+{
+    // The array C is going to store last row of
+    // pascal triangle at the end. And last entry
+    // of last row is nCr
+    int C[r+1];
+    memset(C, 0, sizeof(C));
 
- int table[20][20];ll n,r;
-/*ll ncr(ll n,ll r)
-{
-  if(r==0 || n==r)return 1;
-  if(r==1)return n;
-  return ncr(n-1,r)+ncr(n-1,r-1);
-}*/
-ll nCr(ll n,ll r)
-{
-   if(r==1) return n;
-    if (n==r) return 1;
-    if (table[n][r] != 0)  return table[n][r];
-  else
-   {
-      table[n][r] = nCr(n-1, r) + nCr(n-1, r-1);
-      return table[n][r];
-  }
+    C[0] = 1; // Top row of Pascal Triangle
+
+    // One by constructs remaining rows of Pascal
+    // Triangle from top to bottom
+    for (int i = 1; i <= n; i++)
+    {
+        // Fill entries of current row using previous
+        // row values
+        for (int j = min(i, r); j > 0; j--)
+
+            // nCj = (n-1)Cj + (n-1)C(j-1);
+            C[j] = (C[j] + C[j-1])%p;
+    }
+    return C[r];
 }
-
 
 
 int main()
 {
-
- cin>>n>>r;
- //memset(table,0,sizeof(table[0][0])*20*20);
- cout<<nCr(n,r);
- return 0;
+    int n = 1000000, r = 5, p = 10000007;
+    cout << "Value of nCr % p is " << nCrModp(n, r, p);
+    return 0;
 }
