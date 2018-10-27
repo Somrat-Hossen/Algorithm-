@@ -1,49 +1,35 @@
-#include <bits/stdc++.h>
-#include <stdlib.h>
-#include<iomanip>
-
+#include<bits/stdc++.h>
 using namespace std;
 
 int main()
- {
-     //freopen("in.text","r",stdin);
-     char ch;
-     string st,str;
-     int cnt=0,res;
-     puts("puts your string:");
-     getline(cin,st);
-    // scanf("%c",&ch);
-    puts("puts your substring:");
-     getline(cin,str);
+{
+  string str,substring;
+  int i,j=0,cnt=0,len;
 
-    // printf("%d %d ",str.length(),st.length());
+  puts("Enter string");
+  cin>>str;
+  puts("\nEnter substring");
+  cin>>substring;
+  len=substring.size();
 
-     for(int i=0;i<str.length();i++)
-     {
-         for(int j=0;j<st.length();j++)
-         {
-          if((str[i]==st[j]) and cnt==0)
-             {
-                 cnt++;
-                 res=j; break;
-             }
-             else
-              {
-             if((str[i]==st[j]) and(j==res+1))
-               {
-                 cnt++;res=j;break;
-               }
-             }
-         }
-     }
-     if(cnt==str.size())
-     {
-         puts("Found");
-     }
-     else
-        puts("Not found");
- //cout<<cnt<<endl<<str.length()<<endl;
+  for(i = 0, j = 0; str[i] != '\0' && substring[j] != '\0'; i++)
+    {
+        if(str[i] == substring[j])
+        {
+            j++;
+        }
+        else
+        {
+           j = 0;
+        }
+    }
 
-    return 0;
-  }
+    if(j == len)
+        cout<<"Substring found at position "<< i - j + 1;
+    else
+        cout<<"Substring not found";
+  return 0;
+}
+
+
 
