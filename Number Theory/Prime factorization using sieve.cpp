@@ -40,36 +40,31 @@ void prime_test()
 int main()
 {
   prime_test();
-  vector<ll>div;
 
   /*for(i=0;i<50;i++)
   {
     cout<<prime[i]<<" ";
   }*/
 
- while(scanf("%lld",&num)&& num!=-1)
+ while(scanf("%lld",&num)&& num>0)
   {
-    div.clear();
-      for(i=0;i*i<num;i++)
+      for(i=0;prime[i]*prime[i]<=num;i++)
        {
         while(num%prime[i]==0 && num)
         {
-          div.push_back(prime[i]);
+         cout<<prime[i]<<endl;
           num/=prime[i];
         }
        }
-       if(num>2)  div.push_back(num);
-
-      for(i=0,len=div.size();i<len;i++)
-      {
-          cout<<div[i]<<endl;
-      }
+       if(num>2) cout<<num<<endl;
       cout<<endl;
   }
 
 
     return 0;
 }
+
+
 
 
 
