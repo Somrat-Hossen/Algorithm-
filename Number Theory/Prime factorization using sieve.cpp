@@ -1,57 +1,77 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#define mx 10000000
 
-typedef long long int ll;
+
 using namespace std;
-int p[10000000];
-int divisor[1000000];
-bool a[100000000000];
 
-int main()
+typedef  long long int ll;
+
+ll num,sq,x,i,j,cnt,len,p;
+bool check[mx+1];
+vector<int> prime;
+
+void prime_test()
 {
-    int n,m,c=0,i,x,res=0,j=0;
-    cin>>n;
-    m=n;
+  prime.push_back(2);
+   p=sqrt(mx)+1;
 
-    for(i=2;i*i<=n;i++)
+ for(i=4;i<=mx;i+=2)///All even except 3 are marked.
+  {
+     check[i]=1;
+  }
+    for(int i=3;i<=mx;i+=2)///same sqrt(n)==i*i
     {
-      if(!a[i])
+      if(check[i]==0)
       {
-          for(j=i*i;j<=n;j+=i)
+          prime.push_back(i); ///i means prime
+          if(i<=p)  ///there is no divisor after sqrt n
           {
-              a[j]=1;
+            for(int j=i*2;j<=mx;j+=i)
+           {
+              check[j]=1; ///0 means not prime
+           }
           }
       }
     }
-    j=0;
-    for(i=2;i<=n;i++)
-    {
-        if(!a[i])
-        {
-            p[++j]=i; ////prime num store.
-          //  cout<<i<<" ";
-        }
-    }
-    divisor[++c]=1; /// first divisor is one
-   for(i=1;i*i<=j;i++)
-   {
-    while(n%p[i]==0 && n)
-    {
-     divisor[++c]=p[i];
-     n/=p[i];
-    }
-   }
-   if(n>2) divisor[++c]=n; 
-    
-   cout<<"Divisor of "<<m<<" is: ";
+}
 
-   
-   for(i=1;i<=c;i++)
-    {
-     cout<<divisor[i]<<" ";
-    }
+
+
+int main()
+{
+  prime_test();
+  vector<ll>div;
+
+  /*for(i=0;i<50;i++)
+  {
+    cout<<prime[i]<<" ";
+  }*/
+
+ while(scanf("%lld",&num)&& num!=-1)
+  {
+    div.clear();
+      for(i=0;i*i<num;i++)
+       {
+        while(num%prime[i]==0 && num)
+        {
+          div.push_back(prime[i]);
+          num/=prime[i];
+        }
+       }
+       if(num>2)  div.push_back(num);
+
+      for(i=0,len=div.size();i<len;i++)
+      {
+          cout<<div[i]<<endl;
+      }
+      cout<<endl;
+  }
+
 
     return 0;
 }
+
+
 
 
 
