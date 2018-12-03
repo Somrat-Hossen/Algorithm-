@@ -8,7 +8,7 @@ typedef  long long int ll;
 
 ll num,sq,x,i,j,cnt,len,p;
 bool check[mx+1];
-vector<int> prime;
+vector<ll> prime;
 
 void prime_test()
 {
@@ -52,17 +52,26 @@ int main()
        {
         while(num%prime[i]==0 && num)
         {
-         cout<<prime[i]<<endl;
+         // div.push_back(prime[i]);
+        printf("%lld\n",prime[i]);
           num/=prime[i];
         }
        }
-       if(num>2) cout<<num<<endl;
+       if(num>2)  printf("%lld\n",num);
+
+    /*  for(i=0,len=div.size();i<len;i++)
+      {
+          cout<<div[i]<<endl;
+      }
+      */
       cout<<endl;
   }
 
 
     return 0;
 }
+
+
 
 
 
