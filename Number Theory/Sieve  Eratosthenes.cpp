@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#define mx 10000000
+#define mx 1000000
 
 
 using namespace std;
@@ -26,7 +26,7 @@ void prime_test()
           prime.push_back(i); ///i means prime
           if(i<=p)  ///there is no divisor after sqrt n
           {
-            for(int j=i*2;j<=mx;j+=i)
+            for(int j=i*i;j<=mx;j+=i*2)
            {
               check[j]=1; ///0 means not prime
            }
@@ -50,6 +50,5 @@ int main()
 
     return 0;
 }
-
 
 
