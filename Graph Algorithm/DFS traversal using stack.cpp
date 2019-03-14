@@ -20,7 +20,7 @@ vector<int>vec[100];
          int f=vec[u][i];
          if(vis[f]==0)
          {cout<<f<<" ";
-           stk.push(u);
+           stk.push(u);  ///FIRST parrent push then chile
            stk.push(f);
            vis[f]=1;
           break;
