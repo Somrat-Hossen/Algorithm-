@@ -19,6 +19,9 @@ class data
      node=n;
      cost=c;
   }
+  bool operator >(const data &a)const {
+        return cost > a.cost;///Without this two lines gives compilation error
+    }
 };
 
 bool operator< (data a, data b)
